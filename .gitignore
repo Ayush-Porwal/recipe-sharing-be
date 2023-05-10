@@ -4,3 +4,4 @@ node_modules
 
 # individual files
 *.env*
+sample.json

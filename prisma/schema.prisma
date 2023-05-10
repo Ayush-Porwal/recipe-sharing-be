@@ -9,3 +9,21 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id           Int       @id @default(autoincrement())
+  userName     String    @unique
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  savedRecipes Int[]
+  triedRecipes Int[]
+  recipes      Recipes[]
+}
+
+model Recipes {
+  id         Int      @id @default(autoincrement())
+  recipeName String
+  reviews    String[]
+  usersId    Int
+  Users      Users    @relation(fields: [usersId], references: [id])
+}
